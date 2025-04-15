@@ -1,0 +1,21 @@
+scheduler_config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 308/308 [00:00<00:00, 20.7kB/s]
+config.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 914/914 [00:00<00:00, 58.7kB/s]
+diffusion_pytorch_model.safetensors: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3.46G/3.46G [00:31<00:00, 112MB/s]
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 35221.59it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 97, in train_dimvton
+    train_dataset = DiMVTONDataset(args.data_root, test = False)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 28, in __init__
+    pair_txt_path = os.path.join(self.args.data_root_path, pair_file)
+AttributeError: 'str' object has no attribute 'data_root_path'
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 97, in train_dimvton
+    train_dataset = DiMVTONDataset(args.data_root, test = False)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 28, in __init__
+    pair_txt_path = os.path.join(self.args.data_root_path, pair_file)
+AttributeError: 'str' object has no attribute 'data_root_path'

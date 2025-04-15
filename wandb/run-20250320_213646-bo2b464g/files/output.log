@@ -1,0 +1,31 @@
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 35221.59it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Epoch 0:   0%|                                                                                                                                                            | 0/11647 [00:03<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 133, in train_dimvton
+    optimizer.step()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/optimizer.py", line 484, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/optimizer.py", line 89, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/adamw.py", line 216, in step
+    has_complex = self._init_group(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/adamw.py", line 155, in _init_group
+    state["exp_avg"] = torch.zeros_like(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 58.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 36.38 MiB is free. Including non-PyTorch memory, this process has 10.89 GiB memory in use. Of the allocated memory 10.52 GiB is allocated by PyTorch, and 190.55 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 133, in train_dimvton
+    optimizer.step()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/optimizer.py", line 484, in wrapper
+    out = func(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/optimizer.py", line 89, in _use_grad
+    ret = func(self, *args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/adamw.py", line 216, in step
+    has_complex = self._init_group(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/optim/adamw.py", line 155, in _init_group
+    state["exp_avg"] = torch.zeros_like(
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 58.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 36.38 MiB is free. Including non-PyTorch memory, this process has 10.89 GiB memory in use. Of the allocated memory 10.52 GiB is allocated by PyTorch, and 190.55 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

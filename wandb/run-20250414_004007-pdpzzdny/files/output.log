@@ -1,0 +1,28 @@
+An error occurred while trying to fetch booksforcharlie/stable-diffusion-inpainting: booksforcharlie/stable-diffusion-inpainting does not appear to have a file named diffusion_pytorch_model.safetensors.
+Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 24564.01it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 87, in train_dimvton
+    model = DiMVTONModel(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model.py", line 52, in __init__
+    self.unet.print_trainable_parameters()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/modeling_utils.py", line 173, in __getattr__
+    return super().__getattr__(name)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'UNet2DConditionModel' object has no attribute 'print_trainable_parameters'
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 87, in train_dimvton
+    model = DiMVTONModel(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model.py", line 52, in __init__
+    self.unet.print_trainable_parameters()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/modeling_utils.py", line 173, in __getattr__
+    return super().__getattr__(name)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1729, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'UNet2DConditionModel' object has no attribute 'print_trainable_parameters'

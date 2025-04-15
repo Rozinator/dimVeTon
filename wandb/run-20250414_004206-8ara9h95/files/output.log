@@ -1,0 +1,32 @@
+An error occurred while trying to fetch booksforcharlie/stable-diffusion-inpainting: booksforcharlie/stable-diffusion-inpainting does not appear to have a file named diffusion_pytorch_model.safetensors.
+Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 20526.77it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 87, in train_dimvton
+    model = DiMVTONModel(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 45, in __init__
+    self.auto_attn_ckpt_load(attn_ckpt, attn_ckpt_version)
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 74, in auto_attn_ckpt_load
+    load_checkpoint_in_model(self.attn_modules, os.path.join(repo_path, sub_folder, 'attention'))
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/accelerate/utils/modeling.py", line 1659, in load_checkpoint_in_model
+    tied_params = find_tied_parameters(model)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/accelerate/utils/modeling.py", line 645, in find_tied_parameters
+    named_parameters = {n: p for n, p in model.named_parameters()}
+AttributeError: 'NoneType' object has no attribute 'named_parameters'
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 87, in train_dimvton
+    model = DiMVTONModel(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 45, in __init__
+    self.auto_attn_ckpt_load(attn_ckpt, attn_ckpt_version)
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 74, in auto_attn_ckpt_load
+    load_checkpoint_in_model(self.attn_modules, os.path.join(repo_path, sub_folder, 'attention'))
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/accelerate/utils/modeling.py", line 1659, in load_checkpoint_in_model
+    tied_params = find_tied_parameters(model)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/accelerate/utils/modeling.py", line 645, in find_tied_parameters
+    named_parameters = {n: p for n, p in model.named_parameters()}
+AttributeError: 'NoneType' object has no attribute 'named_parameters'

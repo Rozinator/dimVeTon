@@ -1,0 +1,110 @@
+An error occurred while trying to fetch booksforcharlie/stable-diffusion-inpainting: booksforcharlie/stable-diffusion-inpainting does not appear to have a file named diffusion_pytorch_model.safetensors.
+Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 32305.29it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Some weights of the model checkpoint at /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79/vitonhd-16k-512/attention were not used when initializing ModuleList: {'80.to_k.weight', '8.to_k.weight', '56.to_out.0.weight', '24.to_q.weight', '80.to_out.0.weight', '120.to_q.weight', '40.to_out.0.weight', '64.to_out.0.weight', '16.to_out.0.bias', '112.to_out.0.bias', '104.to_out.0.bias', '48.to_k.weight', '72.to_q.weight', '72.to_k.weight', '0.to_k.weight', '120.to_k.weight', '56.to_v.weight', '8.to_out.0.weight', '0.to_q.weight', '104.to_out.0.weight', '96.to_q.weight', '64.to_q.weight', '64.to_k.weight', '72.to_out.0.bias', '96.to_v.weight', '0.to_v.weight', '56.to_out.0.bias', '0.to_out.0.weight', '104.to_k.weight', '56.to_k.weight', '32.to_k.weight', '80.to_out.0.bias', '40.to_q.weight', '88.to_out.0.weight', '96.to_out.0.weight', '32.to_out.0.bias', '40.to_out.0.bias', '8.to_q.weight', '96.to_k.weight', '112.to_q.weight', '32.to_q.weight', '32.to_out.0.weight', '64.to_out.0.bias', '120.to_v.weight', '112.to_v.weight', '0.to_out.0.bias', '40.to_k.weight', '16.to_out.0.weight', '8.to_v.weight', '24.to_k.weight', '48.to_v.weight', '24.to_out.0.weight', '72.to_v.weight', '112.to_k.weight', '16.to_q.weight', '104.to_v.weight', '56.to_q.weight', '48.to_out.0.weight', '80.to_v.weight', '88.to_out.0.bias', '88.to_q.weight', '48.to_out.0.bias', '32.to_v.weight', '80.to_q.weight', '24.to_v.weight', '48.to_q.weight', '64.to_v.weight', '16.to_k.weight', '72.to_out.0.weight', '24.to_out.0.bias', '8.to_out.0.bias', '16.to_v.weight', '120.to_out.0.bias', '104.to_q.weight', '88.to_v.weight', '88.to_k.weight', '120.to_out.0.weight', '96.to_out.0.bias', '112.to_out.0.weight', '40.to_v.weight'}. This may or may not be an issue - make sure that the checkpoint does not have unnecessary parameters, or that the model definition correctly corresponds to the checkpoint.
+Epoch 0:   0%|                                                                                                                                                     | 0/2912 [00:15<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 121, in train_dimvton
+    pred_noise, noise, mask_latent_concat = model.forward(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 177, in forward
+    pred_noise = self.unet(model_input, timesteps, encoder_hidden_states=None)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_condition.py", line 1216, in forward
+    sample, res_samples = downsample_block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1334, in forward
+    hidden_states = attn(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/transformers/transformer_2d.py", line 442, in forward
+    hidden_states = block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 514, in forward
+    attn_output = self.attn1(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 594, in forward
+    return self.processor(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/attn_processor.py", line 68, in __call__
+    query = attn.to_q(hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/Documents/Ro/dimVeTon/model/lora.py", line 18, in forward
+    return self.orig(x) + self.lora_up(self.lora_down(x)) * self.scaling
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 117, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat2 in method wrapper_CUDA_mm)
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 121, in train_dimvton
+    pred_noise, noise, mask_latent_concat = model.forward(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 177, in forward
+    pred_noise = self.unet(model_input, timesteps, encoder_hidden_states=None)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_condition.py", line 1216, in forward
+    sample, res_samples = downsample_block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1334, in forward
+    hidden_states = attn(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/transformers/transformer_2d.py", line 442, in forward
+    hidden_states = block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 514, in forward
+    attn_output = self.attn1(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention_processor.py", line 594, in forward
+    return self.processor(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/attn_processor.py", line 68, in __call__
+    query = attn.to_q(hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/Documents/Ro/dimVeTon/model/lora.py", line 18, in forward
+    return self.orig(x) + self.lora_up(self.lora_down(x)) * self.scaling
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 117, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat2 in method wrapper_CUDA_mm)

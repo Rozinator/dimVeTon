@@ -2,7 +2,7 @@ import os
 import json
 import torch
 from model.attn_processor import AttnProcessor2_0, SkipAttnProcessor 
-
+from model.lora import LoRALinear
 
 def init_adapter(unet, 
                  cross_attn_cls=SkipAttnProcessor,

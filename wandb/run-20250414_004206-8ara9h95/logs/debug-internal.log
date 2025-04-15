@@ -1,0 +1,15 @@
+{"time":"2025-04-14T00:42:06.403577683-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/gershom/Documents/Ro/dimVeTon/wandb/run-20250414_004206-8ara9h95/logs/debug-core.log"}
+{"time":"2025-04-14T00:42:06.51429783-04:00","level":"INFO","msg":"created new stream","id":"8ara9h95"}
+{"time":"2025-04-14T00:42:06.514355883-04:00","level":"INFO","msg":"stream: started","id":"8ara9h95"}
+{"time":"2025-04-14T00:42:06.514454752-04:00","level":"INFO","msg":"handler: started","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:06.514490286-04:00","level":"INFO","msg":"sender: started","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:06.514522457-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:06.774314845-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-14T00:42:10.188200278-04:00","level":"INFO","msg":"stream: closing","id":"8ara9h95"}
+{"time":"2025-04-14T00:42:10.188272415-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-14T00:42:10.189525204-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-14T00:42:10.491590949-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-14T00:42:10.596405416-04:00","level":"INFO","msg":"handler: closed","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:10.596465431-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:10.596607911-04:00","level":"INFO","msg":"sender: closed","stream_id":"8ara9h95"}
+{"time":"2025-04-14T00:42:10.596628814-04:00","level":"INFO","msg":"stream: closed","id":"8ara9h95"}

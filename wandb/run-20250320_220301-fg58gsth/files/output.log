@@ -1,0 +1,27 @@
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 37008.56it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Epoch 0:   0%|                                                                                                                                                            | 0/11647 [00:17<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 134, in train_dimvton
+    scaler.step(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 448, in step
+    self.unscale_(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 338, in unscale_
+    optimizer_state["found_inf_per_device"] = self._unscale_grads_(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 260, in _unscale_grads_
+    raise ValueError("Attempting to unscale FP16 gradients.")
+ValueError: Attempting to unscale FP16 gradients.
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 134, in train_dimvton
+    scaler.step(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 448, in step
+    self.unscale_(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 338, in unscale_
+    optimizer_state["found_inf_per_device"] = self._unscale_grads_(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 260, in _unscale_grads_
+    raise ValueError("Attempting to unscale FP16 gradients.")
+ValueError: Attempting to unscale FP16 gradients.

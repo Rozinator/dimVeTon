@@ -1,0 +1,14 @@
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 25653.24it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 97, in train_dimvton
+    train_dataset = DiMVTONDataset(args.data_root, test = False)
+AttributeError: 'TrainConfig' object has no attribute 'data_root'
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 196, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 97, in train_dimvton
+    train_dataset = DiMVTONDataset(args.data_root, test = False)
+AttributeError: 'TrainConfig' object has no attribute 'data_root'

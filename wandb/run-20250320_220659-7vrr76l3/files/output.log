@@ -1,0 +1,36 @@
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 58457.20it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Epoch 0:   0%|                                                                                                                                                            | 0/11647 [00:16<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 134, in train_dimvton
+    scaler.step(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 448, in step
+    self.unscale_(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 335, in unscale_
+    inv_scale = self._scale.double().reciprocal().float()
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 134, in train_dimvton
+    scaler.step(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 448, in step
+    self.unscale_(optimizer)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/amp/grad_scaler.py", line 335, in unscale_
+    inv_scale = self._scale.double().reciprocal().float()
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/wandb/sdk/lib/service_connection.py", line 94, in teardown_atexit
+    conn.teardown(hooks.exit_code)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/wandb/sdk/lib/service_connection.py", line 226, in teardown
+    self._router.join()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/wandb/sdk/interface/router.py", line 75, in join
+    self._thread.join()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/threading.py", line 1029, in join
+    self._wait_for_tstate_lock()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/threading.py", line 1045, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt

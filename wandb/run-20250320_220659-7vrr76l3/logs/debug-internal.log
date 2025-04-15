@@ -1,0 +1,7 @@
+{"time":"2025-03-20T22:06:59.222559525-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/gershom/Documents/Ro/dimVeTon/wandb/run-20250320_220659-7vrr76l3/logs/debug-core.log"}
+{"time":"2025-03-20T22:06:59.334908659-04:00","level":"INFO","msg":"created new stream","id":"7vrr76l3"}
+{"time":"2025-03-20T22:06:59.335019356-04:00","level":"INFO","msg":"stream: started","id":"7vrr76l3"}
+{"time":"2025-03-20T22:06:59.335077785-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"7vrr76l3"}
+{"time":"2025-03-20T22:06:59.335222934-04:00","level":"INFO","msg":"handler: started","stream_id":"7vrr76l3"}
+{"time":"2025-03-20T22:06:59.335419477-04:00","level":"INFO","msg":"sender: started","stream_id":"7vrr76l3"}
+{"time":"2025-03-20T22:06:59.515475348-04:00","level":"INFO","msg":"Starting system monitor"}

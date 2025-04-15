@@ -1,0 +1,15 @@
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 28859.89it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Epoch 0:   0%|                                                                                                                                                            | 0/11647 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 119, in train_dimvton
+    with torch.amp.autocast():
+TypeError: __init__() missing 1 required positional argument: 'device_type'
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 203, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 119, in train_dimvton
+    with torch.amp.autocast():
+TypeError: __init__() missing 1 required positional argument: 'device_type'

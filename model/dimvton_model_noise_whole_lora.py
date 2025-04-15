@@ -1,0 +1,178 @@
+import inspect
+import os
+from typing import Union
+
+import PIL
+import numpy as np
+import torch
+import torch.nn as nn
+from diffusers import UNet2DConditionModel, AutoencoderKL, DDIMScheduler
+from model.utils import get_trainable_module, init_adapter
+from model.attn_processor import SkipAttnProcessor
+
+from utils import (compute_vae_encodings, numpy_to_pil, prepare_image,
+                   prepare_mask_image, resize_and_crop, resize_and_padding)
+from accelerate import load_checkpoint_in_model
+from huggingface_hub import snapshot_download
+from diffusers.utils.torch_utils import randn_tensor
+from model.lora import LoRALinear
+
+class DiMVTONModel:
+    def __init__(
+        self, 
+        base_ckpt, 
+        attn_ckpt, 
+        attn_ckpt_version="mix",
+        weight_dtype=torch.float32,
+        device='cuda',
+        compile=False,
+        skip_safety_check=False,
+        use_tf32=True,
+    ):
+        self.device = device
+        self.weight_dtype = weight_dtype
+        self.skip_safety_check = skip_safety_check
+
+        self.noise_scheduler = DDIMScheduler.from_pretrained(base_ckpt, subfolder="scheduler")
+        self.vae = AutoencoderKL.from_pretrained("stabilityai/sd-vae-ft-mse").to(device, dtype=weight_dtype)
+        self.unet = UNet2DConditionModel.from_pretrained(base_ckpt, subfolder="unet").to(device, dtype=weight_dtype)
+
+        init_adapter(self.unet, cross_attn_cls=SkipAttnProcessor)  # Skip Cross-Attention
+
+        self.attn_modules = get_trainable_module(self.unet, "attention") 
+        self.auto_attn_ckpt_load(attn_ckpt, attn_ckpt_version)
+
+        self.inject_lora_to_unet(self.unet, rank=4, alpha=1.0)
+        self.set_lora_training(self.unet)
+
+        self.training = True
+
+        self.vae.eval()
+
+        for param in self.vae.parameters():
+            param.requires_grad = False
+
+        # # Pytorch 2.0 Compile
+        # if compile:
+        #     self.unet = torch.compile(self.unet)
+        #     self.vae = torch.compile(self.vae, mode="reduce-overhead")
+            
+        # # Enable TF32 for faster training on Ampere GPUs (A100 and RTX 30 series).
+        # if use_tf32:
+        #     torch.set_float32_matmul_precision("high")
+        #     torch.backends.cuda.matmul.allow_tf32 = True
+    def set_lora_training(self, unet):
+            
+        for param in unet.parameters():
+            param.requires_grad = False
+        for name, module in unet.named_modules():
+            if isinstance(module, LoRALinear):
+                for p in module.parameters():
+                    p.requires_grad = True
+
+    def auto_attn_ckpt_load(self, attn_ckpt, version):
+        sub_folder = {
+            "mix": "mix-48k-1024",
+            "vitonhd": "vitonhd-16k-512",
+            "dresscode": "dresscode-16k-512",
+        }[version]
+        if os.path.exists(attn_ckpt):
+            load_checkpoint_in_model(self.attn_modules, os.path.join(attn_ckpt, sub_folder, 'attention'))
+        else:
+            repo_path = snapshot_download(repo_id=attn_ckpt)
+            print(f"Downloaded {attn_ckpt} to {repo_path}")
+            load_checkpoint_in_model(self.attn_modules, os.path.join(repo_path, sub_folder, 'attention'))
+
+    def inject_lora_to_unet(self, unet, rank=4, alpha=1.0):
+        for name, module in unet.named_modules():
+            if isinstance(module, nn.MultiheadAttention):
+                # Not likely in diffusers. More common structure:
+                continue
+            if hasattr(module, "to_q") and isinstance(module.to_q, nn.Linear):
+                module.to_q = LoRALinear(module.to_q, rank=rank, alpha=alpha, device=self.device, dtype=self.weight_dtype)
+            if hasattr(module, "to_k") and isinstance(module.to_k, nn.Linear):
+                module.to_k = LoRALinear(module.to_k, rank=rank, alpha=alpha, device=self.device, dtype=self.weight_dtype)
+            if hasattr(module, "to_v") and isinstance(module.to_v, nn.Linear):
+                module.to_v = LoRALinear(module.to_v, rank=rank, alpha=alpha, device=self.device, dtype=self.weight_dtype)
+            if hasattr(module, "to_out") and isinstance(module.to_out[0], nn.Linear):
+                module.to_out[0] = LoRALinear(module.to_out[0], rank=rank, alpha=alpha, device=self.device, dtype=self.weight_dtype)
+
+    def prepare_extra_step_kwargs(self, generator, eta):
+        # prepare extra kwargs for the scheduler step, since not all schedulers have the same signature
+        # eta (η) is only used with the DDIMScheduler, it will be ignored for other schedulers.
+        # eta corresponds to η in DDIM paper: https://arxiv.org/abs/2010.02502
+        # and should be between [0, 1]
+
+        accepts_eta = "eta" in set(
+            inspect.signature(self.noise_scheduler.step).parameters.keys()
+        )
+        extra_step_kwargs = {}
+        if accepts_eta:
+            extra_step_kwargs["eta"] = eta
+
+        # check if the scheduler accepts generator
+        accepts_generator = "generator" in set(
+            inspect.signature(self.noise_scheduler.step).parameters.keys()
+        )
+        if accepts_generator:
+            extra_step_kwargs["generator"] = generator
+        return extra_step_kwargs
+    
+    def forward(
+            self,
+            image: Union[PIL.Image.Image, torch.Tensor],
+            condition_image: Union[PIL.Image.Image, torch.Tensor],
+            mask: Union[PIL.Image.Image, torch.Tensor],
+            height: int = 512,
+            width: int = 384,
+            generator=None,
+            eta=1.0,
+            conditional_dropout_prob: float = 0.1,
+            dream_mask_dropout_prob: float = 0.1,
+            **kwargs
+        ):
+
+        concat_dim = -2
+        image = prepare_image(image).to(self.device, dtype=self.weight_dtype)
+        condition_image = prepare_image(condition_image).to(self.device, dtype=self.weight_dtype)
+        mask = prepare_mask_image(mask).to(self.device, dtype=self.weight_dtype)
+
+        # To:DO : DREAM has not been incorporated to the training code
+
+        # Mask image
+        masked_image = image * (mask < 0.5)
+        # VAE encoding
+        masked_latent = compute_vae_encodings(masked_image, self.vae)
+        condition_latent = compute_vae_encodings(condition_image, self.vae)
+        mask_latent = torch.nn.functional.interpolate(mask, size=masked_latent.shape[-2:], mode="nearest")
+
+        dropout_mask = torch.rand((condition_latent.size(0),), device=self.device) < conditional_dropout_prob
+        dropout_mask = dropout_mask[:, None, None, None]  # Expand to [B,1,1,1]
+        condition_latent = condition_latent * (~dropout_mask)
+
+        # Concatenate latents
+        masked_latent_concat = torch.cat([masked_latent, condition_latent], dim=concat_dim)
+        mask_latent_concat = torch.cat([mask_latent, torch.zeros_like(mask_latent)], dim=concat_dim)
+        # Prepare noise only for the masked region
+        noise = randn_tensor(
+            masked_latent_concat.shape,
+            generator=generator,
+            device=masked_latent_concat.device,
+            dtype=self.weight_dtype,
+        )
+        # latents = mask_latent_concat * noise + (1 - mask_latent_concat) * masked_latent_concat
+        # mask_latent_unchanged = mask_latent_concat
+
+        # Prepare timesteps
+
+        timesteps = torch.randint(0, self.noise_scheduler.config.num_train_timesteps, (masked_latent_concat.shape[0],), device=masked_latent_concat.device).long()
+        noisy_latents_full = self.noise_scheduler.add_noise(masked_latent_concat, noise, timesteps)
+        # noisy_latents = mask_latent_concat * noisy_latents_full + (1 - mask_latent_concat) * masked_latent_concat
+
+        model_input = torch.cat([noisy_latents_full, mask_latent_concat, masked_latent_concat], dim=1)
+
+        pred_noise = self.unet(model_input, timesteps, encoder_hidden_states=None)
+
+        return pred_noise, noise, mask_latent_concat
+    
+

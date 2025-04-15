@@ -1,0 +1,30 @@
+An error occurred while trying to fetch booksforcharlie/stable-diffusion-inpainting: booksforcharlie/stable-diffusion-inpainting does not appear to have a file named diffusion_pytorch_model.safetensors.
+Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 24013.19it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Some weights of the model checkpoint at /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79/vitonhd-16k-512/attention were not used when initializing ModuleList: {'48.to_out.0.bias', '24.to_out.0.bias', '56.to_out.0.bias', '56.to_out.0.weight', '40.to_k.weight', '96.to_v.weight', '88.to_out.0.weight', '72.to_q.weight', '16.to_v.weight', '72.to_v.weight', '0.to_k.weight', '80.to_v.weight', '24.to_q.weight', '48.to_k.weight', '104.to_out.0.weight', '32.to_k.weight', '8.to_out.0.bias', '48.to_q.weight', '32.to_out.0.weight', '88.to_out.0.bias', '120.to_out.0.weight', '16.to_q.weight', '56.to_v.weight', '8.to_q.weight', '104.to_v.weight', '40.to_q.weight', '24.to_out.0.weight', '72.to_k.weight', '64.to_out.0.bias', '8.to_k.weight', '56.to_q.weight', '48.to_v.weight', '8.to_out.0.weight', '88.to_k.weight', '112.to_out.0.weight', '48.to_out.0.weight', '112.to_out.0.bias', '40.to_out.0.bias', '64.to_q.weight', '64.to_out.0.weight', '80.to_k.weight', '0.to_out.0.bias', '88.to_v.weight', '40.to_out.0.weight', '24.to_k.weight', '96.to_out.0.bias', '0.to_q.weight', '16.to_out.0.weight', '64.to_k.weight', '120.to_q.weight', '120.to_out.0.bias', '96.to_q.weight', '80.to_out.0.weight', '32.to_v.weight', '96.to_out.0.weight', '32.to_out.0.bias', '64.to_v.weight', '104.to_q.weight', '0.to_out.0.weight', '112.to_k.weight', '120.to_v.weight', '72.to_out.0.weight', '112.to_q.weight', '96.to_k.weight', '24.to_v.weight', '8.to_v.weight', '32.to_q.weight', '112.to_v.weight', '16.to_out.0.bias', '120.to_k.weight', '56.to_k.weight', '80.to_q.weight', '0.to_v.weight', '104.to_out.0.bias', '16.to_k.weight', '104.to_k.weight', '88.to_q.weight', '72.to_out.0.bias', '40.to_v.weight', '80.to_out.0.bias'}. This may or may not be an issue - make sure that the checkpoint does not have unnecessary parameters, or that the model definition correctly corresponds to the checkpoint.
+Epoch 0:   0%|                                                                                                                            | 3/5824 [01:10<38:09:58, 23.60s/it, loss=0.00513]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 133, in train_dimvton
+    scaler.scale(loss).backward()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/autograd/graph.py", line 768, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 133, in train_dimvton
+    scaler.scale(loss).backward()
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/autograd/graph.py", line 768, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

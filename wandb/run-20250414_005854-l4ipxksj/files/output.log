@@ -1,0 +1,94 @@
+An error occurred while trying to fetch booksforcharlie/stable-diffusion-inpainting: booksforcharlie/stable-diffusion-inpainting does not appear to have a file named diffusion_pytorch_model.safetensors.
+Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+Fetching 12 files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 12/12 [00:00<00:00, 34497.36it/s]
+Downloaded zhengchong/CatVTON to /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79
+Some weights of the model checkpoint at /home/gershom/.cache/huggingface/hub/models--zhengchong--CatVTON/snapshots/2969fcf85fe62f2036605716f0b56f0b81d01d79/vitonhd-16k-512/attention were not used when initializing ModuleList: {'64.to_k.weight', '48.to_q.weight', '64.to_out.0.weight', '120.to_k.weight', '80.to_out.0.weight', '56.to_q.weight', '96.to_out.0.weight', '40.to_k.weight', '16.to_q.weight', '120.to_out.0.weight', '96.to_q.weight', '40.to_q.weight', '0.to_out.0.weight', '80.to_v.weight', '8.to_q.weight', '96.to_k.weight', '16.to_v.weight', '72.to_k.weight', '64.to_q.weight', '88.to_k.weight', '120.to_v.weight', '88.to_v.weight', '80.to_q.weight', '24.to_out.0.weight', '120.to_q.weight', '72.to_q.weight', '88.to_out.0.weight', '48.to_out.0.weight', '0.to_out.0.bias', '56.to_v.weight', '8.to_v.weight', '72.to_out.0.weight', '24.to_k.weight', '104.to_v.weight', '112.to_out.0.bias', '88.to_q.weight', '56.to_out.0.weight', '96.to_out.0.bias', '88.to_out.0.bias', '24.to_q.weight', '0.to_k.weight', '24.to_out.0.bias', '8.to_out.0.weight', '0.to_q.weight', '104.to_out.0.bias', '32.to_k.weight', '40.to_v.weight', '32.to_q.weight', '32.to_v.weight', '112.to_v.weight', '80.to_out.0.bias', '96.to_v.weight', '32.to_out.0.weight', '104.to_k.weight', '56.to_out.0.bias', '104.to_out.0.weight', '40.to_out.0.weight', '8.to_out.0.bias', '48.to_v.weight', '16.to_out.0.bias', '120.to_out.0.bias', '104.to_q.weight', '80.to_k.weight', '16.to_k.weight', '112.to_q.weight', '32.to_out.0.bias', '48.to_k.weight', '112.to_k.weight', '48.to_out.0.bias', '0.to_v.weight', '40.to_out.0.bias', '64.to_out.0.bias', '8.to_k.weight', '72.to_v.weight', '112.to_out.0.weight', '64.to_v.weight', '72.to_out.0.bias', '16.to_out.0.weight', '56.to_k.weight', '24.to_v.weight'}. This may or may not be an issue - make sure that the checkpoint does not have unnecessary parameters, or that the model definition correctly corresponds to the checkpoint.
+Epoch 0:   0%|                                                                                                                                                     | 0/2912 [00:51<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 121, in train_dimvton
+    pred_noise, noise, mask_latent_concat = model.forward(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 177, in forward
+    pred_noise = self.unet(model_input, timesteps, encoder_hidden_states=None)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_condition.py", line 1216, in forward
+    sample, res_samples = downsample_block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1334, in forward
+    hidden_states = attn(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/transformers/transformer_2d.py", line 442, in forward
+    hidden_states = block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 578, in forward
+    ff_output = self.ff(norm_hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 1251, in forward
+    hidden_states = module(hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/activations.py", line 123, in forward
+    return hidden_states * self.gelu(gate)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 120.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 161.38 MiB is free. Including non-PyTorch memory, this process has 10.90 GiB memory in use. Of the allocated memory 10.55 GiB is allocated by PyTorch, and 178.06 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 205, in <module>
+    train_dimvton(args)
+  File "/home/gershom/Documents/Ro/dimVeTon/train.py", line 121, in train_dimvton
+    pred_noise, noise, mask_latent_concat = model.forward(
+  File "/home/gershom/Documents/Ro/dimVeTon/model/dimvton_model_noise_whole_lora.py", line 177, in forward
+    pred_noise = self.unet(model_input, timesteps, encoder_hidden_states=None)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_condition.py", line 1216, in forward
+    sample, res_samples = downsample_block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 1334, in forward
+    hidden_states = attn(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/transformers/transformer_2d.py", line 442, in forward
+    hidden_states = block(
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 578, in forward
+    ff_output = self.ff(norm_hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/attention.py", line 1251, in forward
+    hidden_states = module(hidden_states)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/gershom/anaconda3/envs/catvton/lib/python3.9/site-packages/diffusers/models/activations.py", line 123, in forward
+    return hidden_states * self.gelu(gate)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 120.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 161.38 MiB is free. Including non-PyTorch memory, this process has 10.90 GiB memory in use. Of the allocated memory 10.55 GiB is allocated by PyTorch, and 178.06 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

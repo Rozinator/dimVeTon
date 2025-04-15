@@ -1,0 +1,15 @@
+{"time":"2025-03-20T22:04:38.642334604-04:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"/home/gershom/Documents/Ro/dimVeTon/wandb/run-20250320_220438-pkyio6rq/logs/debug-core.log"}
+{"time":"2025-03-20T22:04:38.752428553-04:00","level":"INFO","msg":"created new stream","id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:38.752483087-04:00","level":"INFO","msg":"stream: started","id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:38.752548991-04:00","level":"INFO","msg":"writer: Do: started","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:38.75257111-04:00","level":"INFO","msg":"handler: started","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:38.752616992-04:00","level":"INFO","msg":"sender: started","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:38.915047887-04:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-20T22:04:58.201697081-04:00","level":"INFO","msg":"stream: closing","id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:58.201776222-04:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-20T22:04:58.202890617-04:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-20T22:04:58.525750336-04:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-20T22:04:58.637513446-04:00","level":"INFO","msg":"handler: closed","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:58.637572785-04:00","level":"INFO","msg":"writer: Close: closed","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:58.637595497-04:00","level":"INFO","msg":"sender: closed","stream_id":"pkyio6rq"}
+{"time":"2025-03-20T22:04:58.637722404-04:00","level":"INFO","msg":"stream: closed","id":"pkyio6rq"}

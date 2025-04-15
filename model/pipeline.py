@@ -138,13 +138,15 @@ class CatVTONPipeline:
         # Concatenate latents
         masked_latent_concat = torch.cat([masked_latent, condition_latent], dim=concat_dim)
         mask_latent_concat = torch.cat([mask_latent, torch.zeros_like(mask_latent)], dim=concat_dim)
-        # Prepare noise
-        latents = randn_tensor(
+        # Prepare noise only for the masked region
+        noise = randn_tensor(
             masked_latent_concat.shape,
             generator=generator,
             device=masked_latent_concat.device,
             dtype=self.weight_dtype,
         )
+        latents = mask_latent_concat * noise + (1 - mask_latent_concat) * masked_latent_concat
+        mask_latent_unchanged = mask_latent_concat
         # Prepare timesteps
         self.noise_scheduler.set_timesteps(num_inference_steps, device=self.device)
         timesteps = self.noise_scheduler.timesteps
@@ -170,7 +172,7 @@ class CatVTONPipeline:
                 # prepare the input for the inpainting model
                 inpainting_latent_model_input = torch.cat([non_inpainting_latent_model_input, mask_latent_concat, masked_latent_concat], dim=1)
                 # predict the noise residual
-                noise_pred= self.unet(
+                noise_pred = self.unet(
                     inpainting_latent_model_input,
                     t.to(self.device),
                     encoder_hidden_states=None, # FIXME
@@ -182,10 +184,20 @@ class CatVTONPipeline:
                     noise_pred = noise_pred_uncond + guidance_scale * (
                         noise_pred_text - noise_pred_uncond
                     )
-                # compute the previous noisy sample x_t -> x_t-1
-                latents = self.noise_scheduler.step(
+                # Compute the previous noisy sample x_t -> x_t-1, updating only the masked region
+                # print(self.noise_scheduler.step(
+                #     noise_pred, t, latents, **extra_step_kwargs
+                # ).prev_sample.shape, latents.shape, latents[0].shape)
+                
+                # raise Exception
+            
+                latents = mask_latent_unchanged * self.noise_scheduler.step(
                     noise_pred, t, latents, **extra_step_kwargs
-                ).prev_sample
+                ).prev_sample + (1 - mask_latent_unchanged) * latents
+
+                # print(mask_latent_concat.shape, mask_latent_unchanged.shape, latents.shape)
+
+                # raise Exception
                 # call the callback, if provided
                 if i == len(timesteps) - 1 or (
                     (i + 1) > num_warmup_steps
@@ -213,7 +225,6 @@ class CatVTONPipeline:
                 if not_safe:
                     image[i] = nsfw_image
         return image
-
 
 class CatVTONPix2PixPipeline(CatVTONPipeline):
     def auto_attn_ckpt_load(self, attn_ckpt, version):
